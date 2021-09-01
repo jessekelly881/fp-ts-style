@@ -1,40 +1,48 @@
-import { Newtype, iso } from 'newtype-ts'
 import { Show } from 'fp-ts/lib/Show'
+import { TaggedValue } from '../utils';
 
-export interface Deg
-    extends Newtype<{ readonly Deg: unique symbol; _tag: 'Deg' }, number> {}
 
-export const isoDeg = iso<Deg>()
-export const deg = isoDeg.wrap
+type Deg = TaggedValue<"Deg", number>;
+export const deg = (value: number): Deg => ({ _tag: "Deg", value })
+
 export const showDeg: Show<Deg> = {
-    show: (x: Deg) => `${x}deg`,
+    show: x => `${x.value}deg`
 }
 
-export interface Rad
-    extends Newtype<{ readonly Rad: unique symbol; _tag: 'Rad' }, number> {}
 
-export const isoRad = iso<Rad>()
-export const rad = isoRad.wrap
+type Rad = TaggedValue<"Rad", number>;
+export const rad = (value: number): Rad => ({ _tag: "Rad", value })
+
 export const showRad: Show<Rad> = {
-    show: (x: Rad) => `${x}rad`,
+    show: x => `${x.value}rad`
 }
 
-export interface Grad
-    extends Newtype<{ readonly Grad: unique symbol; _tag: 'Grad' }, number> {}
 
-export const isoGrad = iso<Grad>()
-export const grad = isoGrad.wrap
+type Grad = TaggedValue<"Grad", number>;
+export const grad = (value: number): Grad => ({ _tag: "Grad", value })
+
 export const showGrad: Show<Grad> = {
-    show: (x: Grad) => `${x}grad`,
+    show: x => `${x.value}grad`
 }
 
-export interface Turn
-    extends Newtype<{ readonly Turn: unique symbol; _tag: 'Turn' }, number> {}
 
-export const isoTurn = iso<Turn>()
-export const turn = isoTurn.wrap
+type Turn = TaggedValue<"Turn", number>;
+export const turn = (value: number): Turn => ({ _tag: "Turn", value })
+
 export const showTurn: Show<Turn> = {
-    show: (x: Turn) => `${x}turn`,
+    show: x => `${x.value}turn`
 }
+
 
 export type Angle = Deg | Rad | Grad | Turn
+
+export const showAngle: Show<Angle> = {
+    show: (a: Angle) => {
+        switch (a._tag) {
+            case "Deg": return showDeg.show(a as Deg)
+            case "Rad": return showRad.show(a as Rad)
+            case "Grad": return showGrad.show(a as Grad)
+            case "Turn": return showTurn.show(a as Turn)
+        }
+    }
+}

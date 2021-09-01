@@ -1,13 +1,9 @@
 import { Show } from 'fp-ts/lib/Show'
+import { TaggedValue } from '../utils';
 
 /*
  * Font relative lengths.
  */
-
-export interface TaggedValue<Tag, T> {
-    _tag: Tag;
-    value: T
-}
 
 type Ch = TaggedValue<"Ch", number>;
 export const ch = (value: number): Ch => ({ _tag: "Ch", value })

@@ -1,4 +1,4 @@
-import { deg, showDeg, rad, showRad, grad, showGrad, turn, showTurn } from '.'
+import { deg, showDeg, rad, showRad, grad, showGrad, turn, showTurn, showAngle } from '.'
 
 describe('Angle', () => {
     it('Deg', () => {
@@ -19,5 +19,11 @@ describe('Angle', () => {
     it('Turn', () => {
         const testVal = turn(1.75)
         expect(showTurn.show(testVal)).toBe('1.75turn')
+    })
+
+    it('showAngle', () => {
+        expect(showAngle.show(deg(1))).toBe('1deg')
+        expect(showAngle.show(rad(1))).toBe('1rad')
+        expect(showAngle.show(turn(1))).toBe('1turn')
     })
 })

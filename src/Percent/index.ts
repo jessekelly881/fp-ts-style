@@ -5,18 +5,13 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/length
  */
 
-import { Newtype, iso } from 'newtype-ts'
-import { Show } from 'fp-ts/lib/Show'
+import { TaggedValue } from '../utils';
+import { Show } from 'fp-ts/Show'
 
-export interface Percent
-    extends Newtype<
-        { readonly Percent: unique symbol; _tag: 'Percent' },
-        number
-    > {}
-
-export const isoPercent = iso<Percent>()
-export const percent = isoPercent.wrap
+type Percent = TaggedValue<"Percent", number>;
+export const percent = (value: number): Percent => ({ _tag: "Percent", value })
 
 export const showPercent: Show<Percent> = {
-    show: (x: Percent) => `${x}%`
+    show: x => `${x.value}%`
 }
+

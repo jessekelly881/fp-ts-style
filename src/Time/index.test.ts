@@ -1,4 +1,4 @@
-import { sec, showSec, ms, showMs } from '.'
+import { sec, showSec, ms, showMs, showTime } from '.'
 
 describe('Time', () => {
     it('Sec', () => {
@@ -10,4 +10,10 @@ describe('Time', () => {
         const testVal = ms(-456)
         expect(showMs.show(testVal)).toEqual('-456ms')
     })
+
+    it('showTime', () => {
+        expect(showTime.show(sec(-1))).toEqual('-1s')
+        expect(showTime.show(ms(0))).toEqual('0ms')
+    })
+
 })
