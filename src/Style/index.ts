@@ -7,7 +7,9 @@ type PartialRecord<K extends keyof any, T> = {
   [P in K]?: T;
 };
 
-type Edge = "top" | "bottom" | "left" | "right";
+export type Edge = "top" | "bottom" | "left" | "right";
+export const horizontal: Edge[] = ["left", "right"];
+export const vertical: Edge[] = ["bottom", "top"];
 
 // Internal representation.
 export interface Style {
