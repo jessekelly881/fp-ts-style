@@ -1,5 +1,6 @@
-import { Show } from 'fp-ts/lib/Show'
+import { Show } from 'fp-ts/Show'
 import { TaggedValue } from '../utils';
+import { Percent, showPercent } from '../Percent';
 
 /*
  * Font relative lengths.
@@ -118,7 +119,6 @@ export const showInch: Show<Inch> = {
 }
 
 
-
 export type Length = Ch | Em | Ex | Rem | Vh | Vw | Vmin | Vmax | Px | Pt | Cm | Mm | Inch;
 
 export const showLength: Show<Length> = {
@@ -140,3 +140,27 @@ export const showLength: Show<Length> = {
         }
     }
 }
+
+export type LengthPercent = Length | Percent;
+
+export const showLengthPercent: Show<LengthPercent> = {
+    show: (l: LengthPercent) => {
+        switch (l._tag) {
+            case "Ch": return showCh.show(l as Ch)
+            case "Em": return showEm.show(l as Em)
+            case "Ex": return showEx.show(l as Ex)
+            case "Rem": return showRem.show(l as Rem)
+            case "Vh": return showVh.show(l as Vh)
+            case "Vw": return showVw.show(l as Vw)
+            case "Vmin": return showVmin.show(l as Vmin)
+            case "Vmax": return showVmax.show(l as Vmax)
+            case "Px": return showPx.show(l as Px)
+            case "Pt": return showPt.show(l as Pt)
+            case "Cm": return showCm.show(l as Cm)
+            case "Mm": return showMm.show(l as Mm)
+            case "Inch": return showInch.show(l as Inch)
+            case "Percent": return showPercent.show(l as Percent)
+        }
+    }
+}
+

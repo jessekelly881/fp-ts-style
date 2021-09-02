@@ -8,7 +8,7 @@
 import { TaggedValue } from '../utils';
 import { Show } from 'fp-ts/Show'
 
-type Percent = TaggedValue<"Percent", number>;
+export type Percent = TaggedValue<"Percent", number>;
 export const percent = (value: number): Percent => ({ _tag: "Percent", value })
 
 export const showPercent: Show<Percent> = {

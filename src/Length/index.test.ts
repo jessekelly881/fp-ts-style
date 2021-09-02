@@ -26,7 +26,9 @@ import {
     inch,
     showInch,
     showLength,
+    showLengthPercent
 } from '.'
+import { percent } from '../Percent'
 
 describe('Length', () => {
     it('Ch', () => {
@@ -81,11 +83,19 @@ describe('Length', () => {
         expect(showInch.show(inch(10))).toBe('10in')
     })
 
-    it('showLength', () => {
+    it('Length', () => {
         expect(showLength.show(rem(2))).toBe('2rem')
         expect(showLength.show(px(1))).toBe('1px')
         expect(showLength.show(em(1))).toBe('1em')
         expect(showLength.show(inch(1))).toBe('1in')
         expect(showLength.show(vw(-1))).toBe('-1vw')
+    })
+
+    it('LengthPercent', () => {
+        expect(showLengthPercent.show(rem(2))).toBe('2rem')
+        expect(showLengthPercent.show(px(1))).toBe('1px')
+        expect(showLengthPercent.show(em(1))).toBe('1em')
+        expect(showLengthPercent.show(inch(1))).toBe('1in')
+        expect(showLengthPercent.show(percent(-1))).toBe('-1%')
     })
 })

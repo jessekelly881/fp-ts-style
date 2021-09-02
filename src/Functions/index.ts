@@ -20,3 +20,9 @@ export const clamp = <A>(a: A, b: A, c: A): Clamp<A> => ({ _tag: "Clamp", value:
 export const getShowClamp = <A>({ show }: Show<A>): Show<Clamp<A>> => ({
     show: ({value}) => `clamp(${show(value[0])}, ${show(value[1])}, ${show(value[2])})`
 })
+
+
+/*
+ * Calc
+ * Operators: +, -, *, /
+ */
