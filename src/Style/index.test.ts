@@ -5,7 +5,7 @@ import { percent } from '../Percent';
 
 describe("Style", () => {
     describe("toCss", () => {
-        const { toCss, padding, margin } = createStyle();
+        const { toCss, padding, margin, gap } = createStyle();
 
         test("padding", () => {
             const top = pipe(padding("top")(px(1)), toCss);
@@ -29,6 +29,14 @@ describe("Style", () => {
             expect(bottom).toEqual({ marginBottom: '5rem' })
             expect(right).toEqual({ marginRight: '2vh' })
             expect(left).toEqual({ marginLeft: '10%' })
+        })
+
+        test("gap", () => {
+            const gap1 = pipe(gap(px(1)), toCss);
+            const gap2 = pipe(gap(px(1), rem(2)), toCss);
+
+            expect(gap1).toEqual({ gap: '1px' })
+            expect(gap2).toEqual({ gap: '1px 2rem' })
         })
     })
 })
