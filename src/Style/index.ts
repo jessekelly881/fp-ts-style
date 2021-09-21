@@ -17,5 +17,8 @@ export interface Style {
 }
 
 export const toCss = (style: Style): CSS.Properties => ({
-    paddingRight: style?.padding?.right && pipe(style.padding.right, showLengthPercent.show)
+    paddingRight: style?.padding?.right && pipe(style.padding.right, showLengthPercent.show),
+    paddingLeft: style?.padding?.left && pipe(style.padding.left, showLengthPercent.show),
+    paddingTop: style?.padding?.top && pipe(style.padding.top, showLengthPercent.show),
+    paddingBottom: style?.padding?.bottom && pipe(style.padding.bottom, showLengthPercent.show),
 })
