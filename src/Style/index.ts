@@ -23,6 +23,7 @@ type PropName = keyof CSS.Properties;
 // Internal representation.
 export interface StyleMaps {
     toCss: (map: StyleMap) => CSS.Properties,
+    beginStyle: CSS.Properties,
     padding: (e: Edge) => (l: LengthPercent) => StyleMap,
     margin: (e: Edge) => (l: LengthPercent) => StyleMap,
     gap: (a: LengthPercent, b?: LengthPercent) => StyleMap,
@@ -50,6 +51,7 @@ const extendStyle = (key: PropName) => (value: string) =>
 
 const createStyle = (): StyleMaps => ({
   toCss: map => map({}),
+  beginStyle: {},
   padding: edge => len => extendStyle(paddingMap[edge])(showLengthPercent.show(len)),
   margin: edge => len => extendStyle(marginMap[edge])(showLengthPercent.show(len)),
   gap: (a, b) => extendStyle("gap")(b ? `${showLengthPercent.show(a)} ${showLengthPercent.show(b)}` : showLengthPercent.show(a))
