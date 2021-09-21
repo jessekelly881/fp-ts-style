@@ -42,12 +42,17 @@ const marginMap: Record<Edge, PropName> = {
   "right": "marginRight"
 }
 
+const extendStyle = (key: PropName) => (value: string) =>
+  (css: CSS.Properties): CSS.Properties =>
+    ({ ...css, [key]: value })
+
+
 
 const createStyle = (): StyleMaps => ({
   toCss: map => map({}),
-  padding: edge => len => css => ({ ...css, [paddingMap[edge]]: showLengthPercent.show(len) }),
-  margin: edge => len => css => ({ ...css, [marginMap[edge]]: showLengthPercent.show(len) }),
-  gap: (a, b) => css => ({ ...css,  gap: b ? `${showLengthPercent.show(a)} ${showLengthPercent.show(b)}` : showLengthPercent.show(a) })
+  padding: edge => len => extendStyle(paddingMap[edge])(showLengthPercent.show(len)),
+  margin: edge => len => extendStyle(marginMap[edge])(showLengthPercent.show(len)),
+  gap: (a, b) => extendStyle("gap")(b ? `${showLengthPercent.show(a)} ${showLengthPercent.show(b)}` : showLengthPercent.show(a))
 })
 
 export default createStyle;
