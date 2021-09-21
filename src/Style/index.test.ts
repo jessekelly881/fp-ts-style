@@ -1,40 +1,22 @@
-import { toCss, Style } from '.';
-import { rem, px, em, vh } from '../Length';
+import { pipe } from 'fp-ts/lib/function';
+import createStyle from '.';
+import { rem, px, vh } from '../Length';
+import { percent } from '../Percent';
 
 describe("Style", () => {
     describe("toCss", () => {
+        const { toCss, padding } = createStyle();
 
         test("padding", () => {
-            const padding: Style["padding"] = {
-                right: rem(1),
-                left: px(1),
-                top: vh(1),
-                bottom: em(1),
-            }
+            const top = pipe(padding("top")(px(1)), toCss);
+            const bottom = pipe(padding("bottom")(rem(5)), toCss);
+            const right = pipe(padding("right")(vh(2)), toCss);
+            const left = pipe(padding("left")(percent(10)), toCss);
 
-            expect(toCss({ padding } as Style)).toEqual({
-                paddingRight: '1rem',
-                paddingLeft: '1px',
-                paddingTop: '1vh',
-                paddingBottom: '1em'
-            })
-        })
-
-
-        test("margin", () => {
-            const margin: Style["margin"] = {
-                right: rem(1),
-                left: px(1),
-                top: vh(1),
-                bottom: em(1),
-            }
-
-            expect(toCss({ margin } as Style)).toEqual({
-                marginRight: '1rem',
-                marginLeft: '1px',
-                marginTop: '1vh',
-                marginBottom: '1em'
-            })
+            expect(top).toEqual({ paddingTop: '1px' })
+            expect(bottom).toEqual({ paddingBottom: '5rem' })
+            expect(right).toEqual({ paddingRight: '2vh' })
+            expect(left).toEqual({ paddingLeft: '10%' })
         })
     })
 })
