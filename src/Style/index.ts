@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 
 import { LengthPercent, showLengthPercent } from '../Length';
 
