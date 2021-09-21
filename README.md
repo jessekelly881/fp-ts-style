@@ -1,6 +1,6 @@
 # fp-ts-style
 
-[![Test](http:&#x2F;&#x2F;&#x2F;actions&#x2F;workflows&#x2F;build.yml&#x2F;badge.svg)](http:&#x2F;&#x2F;&#x2F;actions&#x2F;workflows&#x2F;build.yml)
+[![Test](http:///actions/workflows/build.yml/badge.svg)](http:///actions/workflows/build.yml)
 
 [API Docs](http://)
 
@@ -30,7 +30,9 @@ npm install fp-ts fp-ts-style
 ## Example
 
 ```ts
-import * as Lib from 'fp-ts-style'
+import { createStyle, rem } from 'fp-ts-style'
+const { beginStyle, padding, gap } = createStyle() // Configure here.
 
-// write an example...
+// { gap: '0.5rem', paddingBottom:  '1rem'}
+pipe(beginStyle, padding('bottom')(rem(1)), gap(rem(0.5)))
 ```
