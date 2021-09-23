@@ -8,8 +8,8 @@ export type PartialRecord<K extends keyof any, T> = {
 };
 
 export type Edge = "top" | "bottom" | "left" | "right";
-export const horizontal: Edge[] = ["left", "right"];
-export const vertical: Edge[] = ["bottom", "top"];
+export type Dim2 = "x" | "y";
+export type Dim3 = "x" | "y" | "z";
 
 
 type StyleMap = (x: CSS.Properties) => CSS.Properties;
