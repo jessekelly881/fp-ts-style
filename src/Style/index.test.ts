@@ -5,13 +5,13 @@ import { percent } from '../Percent';
 
 describe("Style", () => {
     describe("toCss", () => {
-        const { toCss, padding, margin, gap } = createStyle();
+        const { toCss, padding: p, margin: m, gap } = createStyle();
 
         test("padding", () => {
-            const top = pipe(padding("top")(px(1)), toCss);
-            const bottom = pipe(padding("bottom")(rem(5)), toCss);
-            const right = pipe(padding("right")(vh(2)), toCss);
-            const left = pipe(padding("left")(percent(10)), toCss);
+            const top = pipe(p("top")(px(1)), toCss);
+            const bottom = pipe(p("bottom")(rem(5)), toCss);
+            const right = pipe(p("right")(vh(2)), toCss);
+            const left = pipe(p("left")(percent(10)), toCss);
 
             expect(top).toEqual({ paddingTop: '1px' })
             expect(bottom).toEqual({ paddingBottom: '5rem' })
@@ -20,10 +20,10 @@ describe("Style", () => {
         })
 
         test("margin", () => {
-            const top = pipe(margin("top")(px(1)), toCss);
-            const bottom = pipe(margin("bottom")(rem(5)), toCss);
-            const right = pipe(margin("right")(vh(2)), toCss);
-            const left = pipe(margin("left")(percent(10)), toCss);
+            const top = pipe(m("top")(px(1)), toCss);
+            const bottom = pipe(m("bottom")(rem(5)), toCss);
+            const right = pipe(m("right")(vh(2)), toCss);
+            const left = pipe(m("left")(percent(10)), toCss);
 
             expect(top).toEqual({ marginTop: '1px' })
             expect(bottom).toEqual({ marginBottom: '5rem' })

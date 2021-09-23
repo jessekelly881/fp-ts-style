@@ -11,7 +11,6 @@ export type Edge = "top" | "bottom" | "left" | "right";
 export type Dim2 = "x" | "y";
 export type Dim3 = "x" | "y" | "z";
 
-
 type StyleMap = (x: CSS.Properties) => CSS.Properties;
 
 export type StyleMap1<A> = (a: A) => StyleMap;
