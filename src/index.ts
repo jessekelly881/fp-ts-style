@@ -1,6 +1,6 @@
 import * as S from 'fp-ts/Semigroup';
 import { pipe } from "fp-ts/lib/function";
-import { Length } from "./Length";
+import { Length, LineWidth } from "./Length";
 import { setSides, Side, Sides } from "./sides";
 
 export type Style = Partial<{
@@ -9,6 +9,7 @@ export type Style = Partial<{
     gap: Sides<Length>;
     width: Length;
     height: Length;
+    borderWidth: Sides<LineWidth>;
 }>
 
 const empty: Style = {};
@@ -43,6 +44,11 @@ export const gap = (side: Side = "all") => (val: Length): Style => pipe(
 export const width = (val: Length): Style => ({ width: val });
 export const height = (val: Length): Style => ({ height: val });
 
+export const borderWidth = (side: Side = "all") => (val: LineWidth): Style => pipe(
+    setSides(side)(val),
+    x => ({ borderWidth: x })
+)
+
 const sidesSemigroup = <T>() => S.struct<Sides<T>>({
     top: optional(S.last<T>()),
     bottom: optional(S.last<T>()),
@@ -56,6 +62,7 @@ const styleSemigroup = S.struct<Style>({
     gap: optional(sidesSemigroup<Length>()),
     width: optional(S.last<Length>()),
     height: optional(S.last<Length>()),
+    borderWidth: optional(sidesSemigroup<LineWidth>()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(

@@ -164,6 +164,8 @@ export const showLengthPercent: Show<LengthPercent> = {
     }
 }
 
+export type LineWidth = Length | "thin" | "medium" | "thick";
+
 /*
  * utils
  */

@@ -13,3 +13,12 @@ export const ColorKeywordMap = { // TODO
 } as const;
 
 export type ColorKeyword = keyof typeof ColorKeywordMap;
+
+interface RGBA {
+    type: "rgba";
+    value: number;
+}
+
+type Color = ColorKeyword | RGBA;
+
+export default Color;
