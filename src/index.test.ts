@@ -1,0 +1,18 @@
+import { margin, padding, gap } from '.'
+import { px } from './Length'
+
+describe('Style', () => {
+    it('padding', () => {
+        expect(padding('x')(px(1))).toEqual({ padding: { left: px(1), right: px(1) } })
+        expect(padding('y')(px(1))).toEqual({ padding: { top: px(1), bottom: px(1) } })
+    })
+    it('margin', () => {
+        expect(margin('x')(px(1))).toEqual({ margin : { left: px(1), right: px(1) } })
+        expect(margin('y')(px(1))).toEqual({ margin: { top: px(1), bottom: px(1) } })
+    })
+
+    it('gap', () => {
+        expect(gap('x')(px(1))).toEqual({ gap : { left: px(1), right: px(1) } })
+        expect(gap('y')(px(1))).toEqual({ gap: { top: px(1), bottom: px(1) } })
+    })
+})

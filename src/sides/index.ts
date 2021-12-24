@@ -5,7 +5,7 @@ export type Sides<T> =  Partial<{
     right: T;
 }>
 
-type Side = 'all' | 'x' | 'y' | 'top' | 'bottom' | 'left' | 'right';
+export type Side = 'all' | 'x' | 'y' | 'top' | 'bottom' | 'left' | 'right';
 
 const all = <T>(val: T): Sides<T> => ({
     top: val,
