@@ -7,6 +7,8 @@ export type Style = Partial<{
     padding: Sides<Length>;
     margin: Sides<Length>;
     gap: Sides<Length>;
+    width: Length;
+    height: Length;
 }>
 
 const empty: Style = {};
@@ -38,6 +40,9 @@ export const gap = (side: Side = "all") => (val: Length): Style => pipe(
     x => ({ gap: x })
 )
 
+export const width = (val: Length): Style => ({ width: val });
+export const height = (val: Length): Style => ({ height: val });
+
 const sidesSemigroup = <T>() => S.struct<Sides<T>>({
     top: optional(S.last<T>()),
     bottom: optional(S.last<T>()),
@@ -49,7 +54,8 @@ const styleSemigroup = S.struct<Style>({
     padding: optional(sidesSemigroup<Length>()),
     margin: optional(sidesSemigroup<Length>()),
     gap: optional(sidesSemigroup<Length>()),
-
+    width: optional(S.last<Length>()),
+    height: optional(S.last<Length>()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(

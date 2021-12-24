@@ -1,6 +1,6 @@
 import { Show } from 'fp-ts/Show'
 import { TaggedValue } from '../utils';
-import { Percent, showPercent } from '../Percent';
+import { percent, Percent, showPercent } from '../Percent';
 
 /*
  * Font relative lengths.
@@ -164,3 +164,8 @@ export const showLengthPercent: Show<LengthPercent> = {
     }
 }
 
+/*
+ * utils
+ */
+
+export const full = percent(100);

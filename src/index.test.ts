@@ -1,4 +1,4 @@
-import { margin, padding, gap, style } from '.'
+import { margin, padding, gap, width, height, style } from '.'
 import { px } from './Length'
 
 describe('Style', () => {
@@ -16,8 +16,25 @@ describe('Style', () => {
         expect(gap('y')(px(1))).toEqual({ gap: { top: px(1), bottom: px(1) } })
     })
 
+    it('width', () => {
+        expect(width(px(1))).toEqual({ width: px(1) })
+    })
+
+    it('height', () => {
+        expect(height(px(1))).toEqual({ height: px(1) })
+    })
+
     it('style', () => {
-        const s = style(gap('x')(px(1)), gap('right')(px(2)))
-        expect(s).toEqual({ gap : { left: px(1), right: px(2) } })
+        const s = style(
+            gap('x')(px(1)),
+            gap('right')(px(2)),
+            width(px(1)),
+            width(px(2))
+        )
+
+        expect(s).toEqual({
+            gap : { left: px(1), right: px(2) },
+            width: px(2)
+        })
     })
 })
