@@ -2,6 +2,15 @@ import * as S from 'fp-ts/Semigroup';
 import { pipe } from "fp-ts/lib/function";
 import { Length, LineWidth } from "./Length";
 import { setSides, Side, Sides } from "./sides";
+import Color from './Color';
+
+type Clear = "none" | "left" | "right" | "inline-start" | "inline-end";
+type Display = "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
+type Position = "static" | "relative" | "fixed" | "absolute" | "sticky";
+type BorderStyle = "none" | "hidden" | "dotted" | "dashed";
+type ZIndex = number | "auto";
+type Visibility = "visible" | "hidden" | "collapse";
+type Float = "left" | "right" | "none" | "inline-start" | "inline-end";
 
 export type Style = Partial<{
     padding: Sides<Length>;
@@ -10,6 +19,14 @@ export type Style = Partial<{
     width: Length;
     height: Length;
     borderWidth: Sides<LineWidth>;
+    borderColor: Sides<Color>;
+    borderStyle: Sides<BorderStyle>;
+    clear: Clear;
+    display: Display;
+    position: Position;
+    zIndex: ZIndex;
+    visibility: Visibility;
+    float: Float;
 }>
 
 const empty: Style = {};
@@ -63,6 +80,14 @@ const styleSemigroup = S.struct<Style>({
     width: optional(S.last<Length>()),
     height: optional(S.last<Length>()),
     borderWidth: optional(sidesSemigroup<LineWidth>()),
+    borderColor: optional(sidesSemigroup<Color>()),
+    borderStyle: optional(sidesSemigroup<BorderStyle>()),
+    clear: optional(S.last()),
+    display: optional(S.last()),
+    position: optional(S.last()),
+    zIndex: optional(S.last()),
+    visibility: optional(S.last()),
+    float: optional(S.last()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(
