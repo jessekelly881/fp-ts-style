@@ -1,3 +1,5 @@
+export type Globals = "inherit" | "initial" | "revert" | "unset";
+
 export interface TaggedValue<Tag, T> {
     _tag: Tag;
     value: T

@@ -3,14 +3,15 @@ import { pipe } from "fp-ts/lib/function";
 import { Length, LineWidth } from "./Length";
 import { setSides, Side, Sides } from "./sides";
 import Color from './Color';
+import { Globals } from './utils';
 
-type Clear = "none" | "left" | "right" | "inline-start" | "inline-end";
-type Display = "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
-type Position = "static" | "relative" | "fixed" | "absolute" | "sticky";
-type BorderStyle = "none" | "hidden" | "dotted" | "dashed";
-type ZIndex = number | "auto";
-type Visibility = "visible" | "hidden" | "collapse";
-type Float = "left" | "right" | "none" | "inline-start" | "inline-end";
+type Clear = Globals | "none" | "left" | "right" | "inline-start" | "inline-end";
+type Display = Globals | "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
+type Position = Globals | "static" | "relative" | "fixed" | "absolute" | "sticky";
+type BorderStyle = Globals | "none" | "hidden" | "dotted" | "dashed";
+type ZIndex = Globals | number | "auto";
+type Visibility = Globals | "visible" | "hidden" | "collapse";
+type Float = Globals | "left" | "right" | "none" | "inline-start" | "inline-end";
 
 export type Style = Partial<{
     padding: Sides<Length>;

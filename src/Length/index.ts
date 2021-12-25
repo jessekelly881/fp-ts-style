@@ -1,6 +1,7 @@
 import { Show } from 'fp-ts/Show'
-import { TaggedValue } from '../utils';
+import { TaggedValue, Globals } from '../utils';
 import { percent, Percent, showPercent } from '../Percent';
+import * as s from 'fp-ts/string';
 
 /*
  * Font relative lengths.
@@ -119,10 +120,13 @@ export const showInch: Show<Inch> = {
 }
 
 
-export type Length = Ch | Em | Ex | Rem | Vh | Vw | Vmin | Vmax | Px | Pt | Cm | Mm | Inch;
+export type Length = Globals | Ch | Em | Ex | Rem | Vh | Vw | Vmin | Vmax | Px | Pt | Cm | Mm | Inch;
 
 export const showLength: Show<Length> = {
     show: (l: Length) => {
+        if(typeof l === "string") {
+            return  s.Show.show(l);
+        }
         switch (l._tag) {
             case "Ch": return showCh.show(l as Ch)
             case "Em": return showEm.show(l as Em)
@@ -145,6 +149,9 @@ export type LengthPercent = Length | Percent;
 
 export const showLengthPercent: Show<LengthPercent> = {
     show: (l: LengthPercent) => {
+        if(typeof l === "string") {
+            return  s.Show.show(l);
+        }
         switch (l._tag) {
             case "Ch": return showCh.show(l as Ch)
             case "Em": return showEm.show(l as Em)
