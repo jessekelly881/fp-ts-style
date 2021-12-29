@@ -7,7 +7,6 @@ import { Globals } from './utils';
 import Ratio from './Ratio';
 
 
-
 type Clear = Globals | "none" | "left" | "right" | "inline-start" | "inline-end";
 type Display = Globals | "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
 type Position = Globals | "static" | "relative" | "fixed" | "absolute" | "sticky";
@@ -16,6 +15,7 @@ type ZIndex = Globals | number | "auto";
 type Visibility = Globals | "visible" | "hidden" | "collapse";
 type Float = Globals | "left" | "right" | "none" | "inline-start" | "inline-end";
 type AspectRatio = Globals | "auto" | Ratio;
+type ObjectFit = Globals | "contain" | "cover" | "fill" | "none" | "scale-down";
 
 export type Style = Partial<{
     padding: Sides<Length>;
@@ -33,6 +33,7 @@ export type Style = Partial<{
     visibility: Visibility;
     float: Float;
     aspectRatio: AspectRatio;
+    objectFit: ObjectFit;
 }>
 
 const empty: Style = {};
@@ -95,6 +96,7 @@ const styleSemigroup = S.struct<Style>({
     visibility: optional(S.last()),
     float: optional(S.last()),
     aspectRatio: optional(S.last()),
+    objectFit: optional(S.last()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(
