@@ -5,6 +5,8 @@ import { setSides, Side, Sides } from "./sides";
 import Color from './Color';
 import { Globals } from './utils';
 
+
+
 type Clear = Globals | "none" | "left" | "right" | "inline-start" | "inline-end";
 type Display = Globals | "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
 type Position = Globals | "static" | "relative" | "fixed" | "absolute" | "sticky";
