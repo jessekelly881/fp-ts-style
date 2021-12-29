@@ -1,7 +1,7 @@
 import * as S from 'fp-ts/Semigroup';
 import { pipe } from "fp-ts/lib/function";
 import { Length, LineWidth } from "./Length";
-import { setSides, Side, Sides } from "./sides";
+import { setSides, Side, Sides } from "./utils/sides";
 import Color from './Color';
 import { Globals } from './utils';
 
