@@ -4,6 +4,7 @@ import { Length, LineWidth } from "./Length";
 import { setSides, Side, Sides } from "./utils/sides";
 import Color from './Color';
 import { Globals } from './utils';
+import Ratio from './Ratio';
 
 
 
@@ -14,6 +15,7 @@ type BorderStyle = Globals | "none" | "hidden" | "dotted" | "dashed";
 type ZIndex = Globals | number | "auto";
 type Visibility = Globals | "visible" | "hidden" | "collapse";
 type Float = Globals | "left" | "right" | "none" | "inline-start" | "inline-end";
+type AspectRatio = Globals | "auto" | Ratio;
 
 export type Style = Partial<{
     padding: Sides<Length>;
@@ -30,6 +32,7 @@ export type Style = Partial<{
     zIndex: ZIndex;
     visibility: Visibility;
     float: Float;
+    aspectRatio: AspectRatio;
 }>
 
 const empty: Style = {};
@@ -91,6 +94,7 @@ const styleSemigroup = S.struct<Style>({
     zIndex: optional(S.last()),
     visibility: optional(S.last()),
     float: optional(S.last()),
+    aspectRatio: optional(S.last()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(
