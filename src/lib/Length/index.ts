@@ -173,6 +173,10 @@ export const showLengthPercent: Show<LengthPercent> = {
 
 export type LineWidth = Length | "thin" | "medium" | "thick";
 
+export const showLineWidth: Show<LineWidth> = ({
+    show: lw => typeof lw === "string" ? lw : showLength.show(lw)
+})
+
 /*
  * utils
  */

@@ -7,15 +7,15 @@ import { Globals } from './utils';
 import Ratio from './Ratio';
 
 
-type Clear = Globals | "none" | "left" | "right" | "inline-start" | "inline-end";
-type Display = Globals | "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
-type Position = Globals | "static" | "relative" | "fixed" | "absolute" | "sticky";
-type BorderStyle = Globals | "none" | "hidden" | "dotted" | "dashed";
-type ZIndex = Globals | number | "auto";
-type Visibility = Globals | "visible" | "hidden" | "collapse";
-type Float = Globals | "left" | "right" | "none" | "inline-start" | "inline-end";
-type AspectRatio = Globals | "auto" | Ratio;
-type ObjectFit = Globals | "contain" | "cover" | "fill" | "none" | "scale-down";
+export type Clear = Globals | "none" | "left" | "right" | "inline-start" | "inline-end";
+export type Display = Globals | "inline" | "block" | "flex" | "grid" | "inline-block" | "inline-flex" | "table" | "none";
+export type Position = Globals | "static" | "relative" | "fixed" | "absolute" | "sticky";
+export type BorderStyle = Globals | "none" | "hidden" | "dotted" | "dashed";
+export type ZIndex = Globals | number | "auto";
+export type Visibility = Globals | "visible" | "hidden" | "collapse";
+export type Float = Globals | "left" | "right" | "none" | "inline-start" | "inline-end";
+export type AspectRatio = Globals | "auto" | Ratio;
+export type ObjectFit = Globals | "contain" | "cover" | "fill" | "none" | "scale-down";
 
 export type Style = Partial<{
     padding: Sides<Length>;
@@ -34,6 +34,8 @@ export type Style = Partial<{
     float: Float;
     aspectRatio: AspectRatio;
     objectFit: ObjectFit;
+    color: Color;
+    backgroundColor: Color;
 }>
 
 const empty: Style = {};
@@ -97,6 +99,8 @@ const styleSemigroup = S.struct<Style>({
     float: optional(S.last()),
     aspectRatio: optional(S.last()),
     objectFit: optional(S.last()),
+    color: optional(S.last()),
+    backgroundColor: optional(S.last()),
 })
 
 export const style = (...styles: Style[]): Style => pipe(
