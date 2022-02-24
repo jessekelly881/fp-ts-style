@@ -1,4 +1,3 @@
-import * as s from 'fp-ts/string';
 import { style } from 'typestyle';
 import { Style } from '../lib'
 import * as L from '../lib/Length';
